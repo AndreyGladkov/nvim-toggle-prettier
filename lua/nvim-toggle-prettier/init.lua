@@ -1,28 +1,27 @@
 local M = {
-    currentState = 1
+    current_state = 1
 }
 
 vim.cmd([[
     let g:prettier#autoformat_require_pragma = 0
 ]])
 
-function M.changeCurrentState()
-    print('changeCurrentState')
-    vim.cmd('let g:prettier#autoformat_config_present =' .. M.currentState)
+function M.set_current_state()
+    vim.cmd('let g:prettier#autoformat_config_present =' .. M.current_state)
 end
 
 function M.enable()
-    M.currentState = 1
-    M.changeCurrentState()
+    M.current_state = 1
+    M.set_current_state()
 end
 
 function M.disable()
-    M.currentState = 0
-    M.changeCurrentState()
+    M.current_state = 0
+    M.set_current_state()
 end
 
 function M.toggle()
-    if M.currentState == 1 then
+    if M.current_state == 1 then
         M.disable()
     else
         M.enable()
